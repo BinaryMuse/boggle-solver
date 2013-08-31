@@ -1,0 +1,15 @@
+{
+  "name": "boggle-solver",
+  "version": "1.1.0",
+  "description": "Solve all the Boggles!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/BinaryMuse/boggle-solver.git"
+  },
+  "author": "Brandon Tilley <brandon@brandontilley.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "coffee-script": "~1.6.3"
+  },
+  "private": true
+}
