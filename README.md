@@ -3,6 +3,8 @@ Learnist Boggle Solver
 
 ![Screenshot](screenshot.png)
 
+[Video Demonstration](http://www.youtube.com/watch?v=2jxyx36Ck_o&hd=1)
+
 This Chrome extension is designed to solve Boggle games as presented by the application on [the `finished` branch of the Learnist Boggle project](https://github.com/learnist/boggle/tree/finished). It should be adaptable to other versions of the project by chaging the DOM manipulation and querying functions in `src/coffee/content_script.coffee`.
 
 The `Trie` and `Traverser` classes are generic enough to be used on any Boggle data.
