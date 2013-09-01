@@ -5,7 +5,7 @@ Learnist Boggle Solver
 
 [Video Demonstration](http://www.youtube.com/watch?v=2jxyx36Ck_o&hd=1)
 
-This Chrome extension is designed to solve Boggle games as presented by the application on [the `finished` branch of the Learnist Boggle project](https://github.com/learnist/boggle/tree/finished). It should be adaptable to other versions of the project by chaging the DOM manipulation and querying functions in `src/coffee/content_script.coffee`.
+This Chrome extension is designed to solve Boggle games as presented by the application on [the `finished` branch of the Learnist Boggle project](https://github.com/learnist/boggle/tree/finished). It should be adaptable to other versions of the project by chaging the DOM manipulation and querying functions in `src/coffee/content_script.coffee`. A similar version can be found at http://binarymuse.github.io/browser-boggle/.
 
 The `Trie` and `Traverser` classes are generic enough to be used on any Boggle data.
 
@@ -22,7 +22,7 @@ Installation
 Usage
 -----
 
-Visit the application (e.g. http://boggle.herokuapp.com/) and click "New Game". The controls will load automatically on the page next to the game grid.
+Visit the application (e.g. http://binarymuse.github.io/browser-boggle/) and click "New Game". The controls will load automatically on the page next to the game grid.
 
 Hacking
 -------
