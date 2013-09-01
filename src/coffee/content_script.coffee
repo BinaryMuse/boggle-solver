@@ -4,11 +4,11 @@ wordText   = null
 jQuery ->
   return unless $("#board td").length
 
-  statusText = $("<p>").css(position: 'absolute', left: '600px', top: '20px').appendTo('body')
-  wordText   = $("<h1>").css(position: 'absolute', left: '600px', top: '30px').appendTo('body')
+  statusText = $("<p>").css(position: 'absolute', left: '600px', top: '60px').appendTo('body')
+  wordText   = $("<h1>").css(position: 'absolute', left: '600px', top: '70px').appendTo('body')
 
   # UI elements for solver control
-  controls = $("<div>").css(position: 'absolute', top: '30px', left: '600px')
+  controls = $("<div>").css(position: 'absolute', top: '70px', left: '600px')
   addControl = (elems...) ->
     container = $("<div>")
     container.append(elem) for elem in elems
@@ -34,7 +34,13 @@ jQuery ->
   addControl radio1, $("<label>").attr('for', 'sogo').css('font-size', '12pt').text("Stop on Game Over")
   addControl radio2, $("<label>").attr('for', 'cogo').css('font-size', '12pt').text("Continue on Game Over")
 
-  controls.appendTo('body')
+  showControls = ->
+    if $("#board:visible").length
+      controls.appendTo('body')
+    else
+      setTimeout showControls, 500
+
+  showControls()
 
 solve = (stopOnGameOver) ->
   words = []
@@ -98,7 +104,7 @@ setWord = (word) ->
   wordText.text(word)
 
 getGrid = ->
-  tiles = $("#board td").map (idx, td) -> $(td).text().toLowerCase()
+  tiles = $("#board td").map (idx, td) -> $(td).text().trim().toLowerCase()
   tiles = tiles.toArray()
 
   [

@@ -8,23 +8,23 @@ statusText = null;
 wordText = null;
 
 jQuery(function() {
-  var addControl, button, controls, radio1, radio2, stopOnGameOver;
+  var addControl, button, controls, radio1, radio2, showControls, stopOnGameOver;
   if (!$("#board td").length) {
     return;
   }
   statusText = $("<p>").css({
     position: 'absolute',
     left: '600px',
-    top: '20px'
+    top: '60px'
   }).appendTo('body');
   wordText = $("<h1>").css({
     position: 'absolute',
     left: '600px',
-    top: '30px'
+    top: '70px'
   }).appendTo('body');
   controls = $("<div>").css({
     position: 'absolute',
-    top: '30px',
+    top: '70px',
     left: '600px'
   });
   addControl = function() {
@@ -59,7 +59,14 @@ jQuery(function() {
   addControl(button);
   addControl(radio1, $("<label>").attr('for', 'sogo').css('font-size', '12pt').text("Stop on Game Over"));
   addControl(radio2, $("<label>").attr('for', 'cogo').css('font-size', '12pt').text("Continue on Game Over"));
-  return controls.appendTo('body');
+  showControls = function() {
+    if ($("#board:visible").length) {
+      return controls.appendTo('body');
+    } else {
+      return setTimeout(showControls, 500);
+    }
+  };
+  return showControls();
 });
 
 solve = function(stopOnGameOver) {
@@ -137,7 +144,7 @@ setWord = function(word) {
 getGrid = function() {
   var tiles;
   tiles = $("#board td").map(function(idx, td) {
-    return $(td).text().toLowerCase();
+    return $(td).text().trim().toLowerCase();
   });
   tiles = tiles.toArray();
   return [tiles.slice(0, 5), tiles.slice(5, 10), tiles.slice(10, 15), tiles.slice(15, 20), tiles.slice(20, 25)];
