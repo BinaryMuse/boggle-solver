@@ -20,36 +20,49 @@ Trie = (function() {
     if (trie == null) {
       trie = this.data;
     }
-    if (first = word[0]) {
-      if (trie[first] == null) {
-        trie[first] = {};
+    first = word[0];
+    if (word.length === 1) {
+      if (trie[first]) {
+        return trie[first]._ = 1;
+      } else {
+        return trie[first] = 1;
       }
-      return this.put(word.slice(1, word.length), trie[first]);
     } else {
-      return trie._ = true;
+      if (trie[first] === 1) {
+        trie[first] = {
+          _: 1
+        };
+        return this.put(word.slice(1, word.length), trie[first]);
+      } else {
+        if (trie[first] == null) {
+          trie[first] = {};
+        }
+        return this.put(word.slice(1, word.length), trie[first]);
+      }
     }
   };
 
   Trie.prototype.find = function(word, trie) {
-    var first, subTrie;
+    var first;
     if (trie == null) {
       trie = this.data;
     }
-    if (first = word[0]) {
-      if (subTrie = trie[first]) {
-        return this.find(word.slice(1, word.length), subTrie);
+    first = word[0];
+    if (word.length === 1) {
+      if ((typeof trie[first] === 'object' && trie[first]._) || trie[first] === 1) {
+        return Trie.MATCH;
+      } else if (typeof trie[first] === 'object') {
+        return Trie.PARTIAL_MATCH;
       } else {
         return Trie.NO_MATCH;
       }
     } else {
-      if (trie._) {
-        return Trie.MATCH;
-      } else {
-        return Trie.PARTIAL_MATCH;
-      }
+      return this.find(word.slice(1, word.length), trie[first]);
     }
   };
 
   return Trie;
 
 })();
+
+module.exports = Trie;
